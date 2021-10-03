@@ -35,6 +35,7 @@ end)
 -- Start Cool Down Timer
 RegisterServerEvent('esx_vehicletheft:startTimer')
 AddEventHandler('esx_vehicletheft:startTimer', function()
+	theftPlayer = 0
 	isCurrentTheft = false
 	coolDown = true
 	SetTimeout((Config.Main.CoolDown*60)*1000, function()
@@ -45,6 +46,7 @@ end)
 -- Reset Timer
 RegisterServerEvent('esx_vehicletheft:resetTimer')
 AddEventHandler('esx_vehicletheft:resetTimer', function()
+	theftPlayer = 0
 	isCurrentTheft = false
 	coolDown = false
 end)
@@ -53,10 +55,16 @@ end)
 RegisterServerEvent('esx_vehicletheft:sendPayment')
 AddEventHandler('esx_vehicletheft:sendPayment', function(reward)
 	local _source = source
-	local xPlayer = ESX.GetPlayerFromId(_source)
-	xPlayer.addAccountMoney('black_money', reward)
-	xPlayer.showNotification(_U('you_earned', reward))
-	TriggerEvent('esx_vehicletheft:startTimer')
+
+	if isCurrentTheft and not coolDown then
+		if _source == theftPlayer then
+			local xPlayer = ESX.GetPlayerFromId(_source)
+
+			xPlayer.addAccountMoney('black_money', reward)
+			xPlayer.showNotification(_U('you_earned', reward))
+			TriggerEvent('esx_vehicletheft:startTimer')
+		end
+	end
 end)
 
 -- Theft Canceled
