@@ -44,7 +44,7 @@ AddEventHandler('esx_vehicletheft:startTheft', function()
 
 	-- Spawn Vehicle
 	ESX.Game.SpawnVehicle(vehHash, this_location.Spawner, this_location.Heading, function(callback_vehicle)
-		SetVehRadioStation(callback_vehicle, "OFF")
+		SetVehRadioStation(callback_vehicle, 'OFF')
 		SetVehicleFixed(callback_vehicle)
 		SetVehicleDeformationFixed(callback_vehicle)
 		SetVehicleUndriveable(callback_vehicle, false)

@@ -3,7 +3,7 @@ Config.Locale = 'en'
 
 Config.Main = {
 	DrawDistance = 50, -- Draw Distance to Markers.
-	PoliceReq = 1, -- The Min Amount of Police to be Online
+	PoliceReq = 2, -- The Min Amount of Police to be Online
 	BlipTime = 10, -- Blip Update Time in Seconds.
 	CoolDown = 20, -- How long in Mins before a New Vehicle Theft can be Started
 	Plate = true, -- Give Vehicle Custom Plate Text
